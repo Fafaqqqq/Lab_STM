@@ -1,0 +1,16 @@
+:name: Multi Node SAM E-70 setup
+:description: Two gPTP-capable SAM E-70 nodes (Zephyr)
+
+emulation CreateUARTHub "uartHub"
+
+$bin=@E:\STM32WorkSpace\UART_TwoBoards_ComDMA\SW4STM32\STM32F4-Discovery\Debug\STM32F4-Discovery.elf
+$name="master"
+i @scripts/single-node/STM32_lab2.resc
+connector Connect sysbus.uart2 uartHub
+mach clear
+
+$bin=@E:\STM32WorkSpace\UART_TwoBoards_ComIT\SW4STM32\STM32F4-Discovery\Debug\STM32F4-Discovery.elf
+$name="slave"
+i @scripts/single-node/STM32_lab2.resc
+connector Connect sysbus.uart2 uartHub
+mach clear
